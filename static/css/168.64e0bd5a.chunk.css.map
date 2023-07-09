@@ -1,0 +1,1 @@
+{"version":3,"file":"static/css/168.64e0bd5a.chunk.css","mappings":"AAIA,4DACI,kBACJ","sources":["components/Reviews/Reviews.module.css"],"sourcesContent":[".review__item{\n    margin-bottom: 10px;\n}\n\n.review__title{\n    margin-bottom: 10px;\n}"],"names":[],"sourceRoot":""}
