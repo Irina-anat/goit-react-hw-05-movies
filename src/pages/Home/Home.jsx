@@ -1,33 +1,24 @@
+import { fetchTrendingMovies } from "Services/Api";
+import { useState, useEffect } from 'react';
+import MoviesList from "components/MoviesList/MoviesList";
+import css from './Home.module.css';
 
 
-const Home = () =>{
-    /*  useEffect(() => {
-     //HTTP запит, якщо потрібен   
-    }, [])*/
+const Home = () => {
+  const [movies, setMovies] = useState([]);
+  useEffect(() => {
+    fetchTrendingMovies().then(response => setMovies(response))
+  }, []);
   
-  return <div>Trending today</div>
-    
-}
+  return <div className={css.container}>
+    <h1 className={css.trending__title}>Trending today</h1>
+    <MoviesList movies={movies} />
+  </div>
+};
 
 export default Home;
 
 
 /*
-const Home = () =>{
-    /*  useEffect(() => {
-     //HTTP запит, якщо потрібен   
-    }, [])*//*
-
-    return (
-    <div> 
-      {['movie1', 'movie2', 'movie3', 'movie4', 'movie5'].map(movie => {
-        return (
-          <Link key={movie} to={`${movie}`}>
-            {movie}
-          </Link>
-        )
-      })}
-    </div>
-  );
     
 }*/ 

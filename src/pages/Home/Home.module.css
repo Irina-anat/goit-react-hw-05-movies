@@ -1,0 +1,12 @@
+.container{
+max-width: 1600px;
+margin-right: auto;
+margin-left: auto;
+padding: 30px;
+}
+
+.trending__title{
+    font-weight: 700;
+    font-size: 32px;
+    margin-bottom: 20px;
+}

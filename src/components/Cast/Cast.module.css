@@ -1,0 +1,30 @@
+.cast__box{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.cast__card{
+    max-width: 200px;
+    background-color: #f0f8ff;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.cast__img{
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.cast__text{
+    font-weight: 500;
+    margin-bottom: 7px;
+    font-size: 16px;
+    list-style: 1.625;
+}
+
+.cast__description{
+    display: flex;
+    flex-wrap: wrap;
+}

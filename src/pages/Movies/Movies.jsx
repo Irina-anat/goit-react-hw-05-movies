@@ -1,17 +1,56 @@
-import { useState } from "react";
-import { Link, useLocation, useSearchParams } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useLocation, useSearchParams } from "react-router-dom";
+import { fetchSearchMovies } from "Services/Api";
+import SearchForm from "components/SearchForm/SearchForm";
+import MoviesList from "components/MoviesList/MoviesList";
+import css from './Movies.module.css';
 
-const Movies = () => {
+
+  const Movies = () => {
+  const [movies, setMovies] = useState([]);
+  const location = useLocation();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const query = searchParams.get('query') ?? '';
+
+  const handleSubmit = (value) => {
+    setSearchParams({ query: value })
+  };
+
+ /* useEffect(() => {
+    searchQuery && fetchSearchMovies(searchQuery).then(response => setMovies([...response]));
+  }, [searchQuery]);*/
+  
+ useEffect(() => {
+    if (!query) return;
+    fetchSearchMovies(query).then(response => setMovies([...response]));
+  }, [query]);
+  
+  return (<div className={css.container__search}>
+      <SearchForm location={location} onSubmit={handleSubmit} />
+      {movies.length > 0 && <MoviesList movies={movies} />}
+  </div>)
+};
+
+export default Movies;
+
+
+
+
+
+
+//setSearchParams не поновлює searchParam а перезаписує поверх
+
+/*const Movies = () => {
   const [movies, setMovies] = useState([
     'movie1', 'movie2', 'movie3', 'movie4', 'movie5'
   ]);
-  console.log(setMovies)
+ // console.log(setMovies)
   const location = useLocation();
   const [searchParams, setSearchParams] = useSearchParams();
   const movieId = searchParams.get('movieId') ?? ""
-  /*  useEffect(() => {
+    useEffect(() => {
       //HTTP запит, якщо потрібен   
-     }, [])   state isLoading error*/
+     }, [])   //state isLoading error
   
   const updateQueryString = event => {
     const movieIdValue = event.target.value;
@@ -41,7 +80,4 @@ const Movies = () => {
   </div>
 };
 
-
-export default Movies;
-
-//setSearchParams не поновлює searchParam а перезаписує поверх
+export default Movies;*/

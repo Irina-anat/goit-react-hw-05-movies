@@ -1,0 +1,30 @@
+.header{
+display: flex;
+align-items: center;  
+padding: 20px 30px;
+margin-bottom: 20px;
+box-shadow: 0 20px 16px -16px rgba(0, 0, 0, 0.6);
+}
+
+.header__nav{
+display: flex;
+gap: 30px;
+}
+
+
+.header__link{
+display: inline-block;
+font-weight: 600;
+font-size: 26px;
+color: #000;
+text-decoration: none;
+cursor: pointer;
+}
+
+.active {
+    color:#0000ff;
+    text-decoration-line: underline;
+}
+
+
+

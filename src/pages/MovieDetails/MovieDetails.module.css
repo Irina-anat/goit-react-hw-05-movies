@@ -1,0 +1,42 @@
+.movie__container{
+    padding: 30px;
+}
+
+.movie__box{
+    display: flex;
+    padding: 20px;
+    max-width: 800px;
+    background-color: #f0f8ff;
+    margin-top: 10px;
+    border-radius: 10px;
+}
+
+.movie__image{
+    margin-right: 20px;
+    border-radius: 10px;
+}
+
+.movie__title{
+font-size: 30px;
+line-height: 1.657;
+}
+
+.descriptin__title,
+.editional__title{
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 1.572;
+    margin-bottom: 10px;
+    color: #000;
+}
+
+.movie__text{
+    font-size: 16px;
+    line-height: 1.535;
+    margin-bottom: 10px;
+}
+
+.editional__title{
+    text-decoration: underline;
+}
+
