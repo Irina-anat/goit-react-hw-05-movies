@@ -53,8 +53,8 @@ const MovieDetails = () => {
           <div>
             <h3 className={css.descriptin__title}>Additional information:</h3>
             <ul>
-              <li><NavLink className={css.editional__title} to="cast">Cast:</NavLink></li>
-              <li><NavLink className={css.editional__title} to="reviews">Movie review:</NavLink></li>
+              <li><NavLink className={css.editional__title} to="cast">Cast</NavLink></li>
+              <li><NavLink className={css.editional__title} to="reviews">Movie review</NavLink></li>
             </ul>
           </div>
         </div>
