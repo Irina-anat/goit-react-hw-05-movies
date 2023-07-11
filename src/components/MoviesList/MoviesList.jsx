@@ -7,8 +7,8 @@ const MoviesList = ({ movies }) => {
     return (
         <ul className={css.movie__list}>
             {movies.map(
-                ({ id, title, name, poster_path }) =>
-                (<li className={css.movie__item} key={id}>
+                ({ id, title, poster_path }) =>
+                   title &&  (<li className={css.movie__item} key={id}>
                     <Link
                         key={id}
                         to={`/movies/${id}`}
@@ -20,8 +20,8 @@ const MoviesList = ({ movies }) => {
                                     : 'https://via.placeholder.com/300x450'}
                             width={300}
                             height={450}
-                            alt={title || name} />
-                        <h2 className={css.list__title}>{title || name}</h2>
+                            alt={title} />
+                        <h2 className={css.list__title}>{title}</h2>
                     </Link>
                 </li>))}
         </ul>)
