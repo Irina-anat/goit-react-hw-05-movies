@@ -35,9 +35,10 @@ const MovieDetails = () => {
               src={
                 poster_path
                   ? 'https://image.tmdb.org/t/p/w300' + poster_path
-                  : 'https://via.placeholder.com/200x200'
+                  : 'https://via.placeholder.com/300x450'
               }
-              width={400}
+              width={300}
+              height={450}
               alt="title"
             />
             <div>

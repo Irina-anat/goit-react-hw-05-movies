@@ -31,7 +31,7 @@ export const Cast = () => {
         <li className={css.cast__card} key={id}>
           <img className={css.cast__img} src={
             profile_path
-              ? 'https://image.tmdb.org/t/p/w300' + profile_path
+              ? 'https://image.tmdb.org/t/p/w200' + profile_path
               : 'https://via.placeholder.com/200x300'
           }
             width={200}
