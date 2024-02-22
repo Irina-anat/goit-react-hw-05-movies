@@ -10,10 +10,10 @@ const Home = () => {
     fetchTrendingMovies().then(response => setMovies(response))
   }, []);
   
-  return <div className={css.container}>
+  return <main className={css.container}>
     <h1 className={css.trending__title}>Trending today</h1>
     <MoviesList movies={movies} />
-  </div>
+  </main>
 };
 
 export default Home;

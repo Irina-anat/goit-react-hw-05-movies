@@ -27,7 +27,7 @@ const MovieDetails = () => {
   }, [movieId]);
 
   return (
-    <div className={css.movie__container}>
+    <main className={css.movie__container}>
       <Link to={backLinkLocationRef.current}>
         {' '}
         <button type="button">Go back</button>
@@ -80,7 +80,7 @@ const MovieDetails = () => {
       <Suspense fallback={<Loader/>}>
         <Outlet />
       </Suspense>
-    </div>
+    </main>
   );
 };
 

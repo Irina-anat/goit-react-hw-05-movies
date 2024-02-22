@@ -25,10 +25,10 @@ import css from './Movies.module.css';
     fetchSearchMovies(query).then(response => setMovies([...response]));
   }, [query]);
   
-  return (<div className={css.container__search}>
+  return (<main className={css.container__search}>
       <SearchForm location={location} onSubmit={handleSubmit} />
       {movies.length > 0 && <MoviesList movies={movies} />}
-  </div>)
+  </main>)
 };
 
 export default Movies;
