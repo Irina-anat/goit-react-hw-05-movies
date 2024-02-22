@@ -30,7 +30,7 @@ const MovieDetails = () => {
     <main className={css.movie__container}>
       <Link to={backLinkLocationRef.current}>
         {' '}
-        <button type="button">Go back</button>
+        <button type="button" aria-label="Go back to the previous page">Go back</button>
       </Link>
       {details && (
         <div>

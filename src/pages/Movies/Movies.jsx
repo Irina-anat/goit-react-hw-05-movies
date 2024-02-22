@@ -1,10 +1,10 @@
-import { useState, useEffect } from "react";
-import { useLocation, useSearchParams } from "react-router-dom";
-import { fetchSearchMovies } from "Services/Api";
-import SearchForm from "components/SearchForm/SearchForm";
-import MoviesList from "components/MoviesList/MoviesList";
+import { useState, useEffect } from 'react';
+import { useLocation, useSearchParams } from 'react-router-dom';
+import { fetchSearchMovies } from 'Services/Api';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import SearchForm from 'components/SearchForm/SearchForm';
+import MoviesList from 'components/MoviesList/MoviesList';
 import css from './Movies.module.css';
-
 
   const Movies = () => {
   const [movies, setMovies] = useState([]);
@@ -12,31 +12,44 @@ import css from './Movies.module.css';
   const [searchParams, setSearchParams] = useSearchParams();
   const query = searchParams.get('query') ?? '';
 
-  const handleSubmit = (value) => {
-    setSearchParams({ query: value })
+  const handleSubmit = value => {
+    setSearchParams({ query: value });
   };
 
- /* useEffect(() => {
-    searchQuery && fetchSearchMovies(searchQuery).then(response => setMovies([...response]));
-  }, [searchQuery]);*/
-  
- useEffect(() => {
-    if (!query) return;
-    fetchSearchMovies(query).then(response => setMovies([...response]));
+  useEffect(() => {
+    if (!query) {
+      return;
+    }
+
+    let isMounted = true;// for Notify.warning
+
+    const fetchData = async () => {
+      const response = await fetchSearchMovies(query);
+      if (isMounted) {
+        if (response.length === 0) {
+          Notify.info('Nothing was found by request. Try another value...');
+        } else {
+          setMovies([...response]);
+        }
+      }
+    };
+
+    fetchData();
+
+    return () => {
+      isMounted = false;
+    };
   }, [query]);
-  
-  return (<main className={css.container__search}>
+
+  return (
+    <main className={css.container__search}>
       <SearchForm location={location} onSubmit={handleSubmit} />
       {movies.length > 0 && <MoviesList movies={movies} />}
-  </main>)
+    </main>
+  );
 };
 
 export default Movies;
-
-
-
-
-
 
 //setSearchParams не поновлює searchParam а перезаписує поверх
 
@@ -81,3 +94,29 @@ export default Movies;
 };
 
 export default Movies;*/
+
+//Previous
+// const Movies = () => {
+//   const [movies, setMovies] = useState([]);
+//   const location = useLocation();
+//   const [searchParams, setSearchParams] = useSearchParams();
+//   const query = searchParams.get('query') ?? '';
+
+//   const handleSubmit = (value) => {
+//     setSearchParams({ query: value })
+//   };
+
+//  /* useEffect(() => {
+//     searchQuery && fetchSearchMovies(searchQuery).then(response => setMovies([...response]));
+//   }, [searchQuery]);*/
+  
+//  useEffect(() => {
+//     if (!query) return;
+//     fetchSearchMovies(query).then(response => setMovies([...response]));
+//   }, [query]);
+  
+//   return (<main className={css.container__search}>
+//       <SearchForm location={location} onSubmit={handleSubmit} />
+//       {movies.length > 0 && <MoviesList movies={movies} />}
+//   </main>)
+// };
