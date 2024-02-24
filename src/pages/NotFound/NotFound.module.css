@@ -11,13 +11,13 @@
     text-align: center;
 }
 
-.not__title {
+.notFound__title {
     font-size: 3em;
     color: #333;
     margin-bottom: 20px;
 }
 
-.not__text {
+.notFound__text {
     font-size: 1.5em;
     color: #555;
     margin-bottom: 30px;

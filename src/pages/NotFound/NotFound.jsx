@@ -9,9 +9,9 @@ const NotFoundPage = () => {
   return (
     <div className={css.page}>
       <div className={css.container}>
-        <h1 className={css.not__title}>404 Not Found</h1>
-        <p className={css.not__text}>
-          Oops! The page you are looking for might be in another castle.
+        <h1 className={css.notFound__title}>404 Not Found</h1>
+        <p className={css.notFound__text}>
+         Oops! It looks like the page you are searching for might be located somewhere else(
         </p>
         <Link to={backLinkLocationRef.current}>
         {' '}
@@ -23,3 +23,4 @@ const NotFoundPage = () => {
 };
 
 export default NotFoundPage;
+
