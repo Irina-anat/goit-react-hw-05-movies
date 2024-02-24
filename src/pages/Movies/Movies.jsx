@@ -42,10 +42,10 @@ import css from './Movies.module.css';
   }, [query]);
 
   return (
-    <main className={css.container__search}>
+    <div className={css.container__search}>
       <SearchForm location={location} onSubmit={handleSubmit} />
       {movies.length > 0 && <MoviesList movies={movies} />}
-    </main>
+    </div>
   );
 };
 

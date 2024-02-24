@@ -27,7 +27,7 @@ const MovieDetails = () => {
   }, [movieId]);
 
   return (
-    <main className={css.movie__container}>
+    <div className={css.movie__container}>
       <Link to={backLinkLocationRef.current}>
         {' '}
         <button type="button" aria-label="Go back to the previous page">Go back</button>
@@ -80,7 +80,7 @@ const MovieDetails = () => {
       <Suspense fallback={<Loader/>}>
         <Outlet />
       </Suspense>
-    </main>
+    </div>
   );
 };
 

@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import { lazy } from "react";
 import { Layout } from "./Layout/Layout";
-import css from './App.module.css';
+//import css from './App.module.css';
 //import Home from "pages/Home/Home";
 //import MovieDetails from "pages/MovieDetails/MovieDetails";
 //import Movies from "pages/Movies/Movies";
@@ -18,6 +18,7 @@ const Cast = lazy(() =>
     ...module,
     default: module.Cast,
   })));
+const NotFoundPage = lazy(()=> import("../pages/NotFound/NotFound"));
 
 
 export const App = () => {
@@ -35,7 +36,8 @@ export const App = () => {
             <Route path="reviews" element={<Reviews />} />
           </Route>
         </Route>
-        <Route path="*" element={<div><h1 className={css.not__found}>Ooooops, page not found</h1></div>} />
+        {/* <Route path="*" element={<div><h1 className={css.not__found}>Ooooops, page not found</h1></div>} /> */}
+        <Route path="*" element={<NotFoundPage/>} />
       </Routes>
     </div>  
   )
