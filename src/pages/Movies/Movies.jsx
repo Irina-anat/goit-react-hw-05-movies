@@ -1,18 +1,20 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLocation, useSearchParams } from 'react-router-dom';
 import { fetchSearchMovies } from 'Services/Api';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import SearchForm from 'components/SearchForm/SearchForm';
 import MoviesList from 'components/MoviesList/MoviesList';
+import Loader from 'components/Loader/Loader';
 import css from './Movies.module.css';
 
-  const Movies = () => {
+const Movies = () => {
   const [movies, setMovies] = useState([]);
+  const [loading, setLoading] = useState(false); 
   const location = useLocation();
   const [searchParams, setSearchParams] = useSearchParams();
   const query = searchParams.get('query') ?? '';
 
-  const handleSubmit = value => {
+  const handleSubmit = (value) => {
     setSearchParams({ query: value });
   };
 
@@ -21,16 +23,24 @@ import css from './Movies.module.css';
       return;
     }
 
-    let isMounted = true;// for Notify.warning
+    let isMounted = true;
 
     const fetchData = async () => {
-      const response = await fetchSearchMovies(query);
-      if (isMounted) {
-        if (response.length === 0) {
-          Notify.info('Nothing was found by request. Try another value...');
-        } else {
-          setMovies([...response]);
+      setLoading(true); 
+      try {
+        const response = await fetchSearchMovies(query);
+        if (isMounted) {
+          if (response.length === 0) {
+            Notify.info('Nothing was found by request. Try another value...');
+          } else {
+            setMovies([...response]);
+          }
         }
+      } catch (error) {
+        console.error('Error fetching search movies:', error);
+        Notify.failure('Error fetching movies. Please try again later.');
+      } finally {
+        setLoading(false); 
       }
     };
 
@@ -44,12 +54,62 @@ import css from './Movies.module.css';
   return (
     <div className={css.container__search}>
       <SearchForm location={location} onSubmit={handleSubmit} />
-      {movies.length > 0 && <MoviesList movies={movies} />}
+      {loading ? (
+        <Loader /> 
+      ) : (
+        movies.length > 0 && <MoviesList movies={movies} />
+      )}
     </div>
   );
 };
 
 export default Movies;
+
+
+//   const Movies = () => {
+//   const [movies, setMovies] = useState([]);
+//   const location = useLocation();
+//   const [searchParams, setSearchParams] = useSearchParams();
+//   const query = searchParams.get('query') ?? '';
+
+//   const handleSubmit = value => {
+//     setSearchParams({ query: value });
+//   };
+
+//   useEffect(() => {
+//     if (!query) {
+//       return;
+//     }
+
+//     let isMounted = true;// for Notify.warning
+
+//     const fetchData = async () => {
+//       const response = await fetchSearchMovies(query);
+//       if (isMounted) {
+//         if (response.length === 0) {
+//           Notify.info('Nothing was found by request. Try another value...');
+//         } else {
+//           setMovies([...response]);
+//         }
+//       }
+//     };
+
+//     fetchData();
+
+//     return () => {
+//       isMounted = false;
+//     };
+//   }, [query]);
+
+//   return (
+//     <div className={css.container__search}>
+//       <SearchForm location={location} onSubmit={handleSubmit} />
+//       {movies.length > 0 && <MoviesList movies={movies} />}
+//     </div>
+//   );
+// };
+
+// export default Movies;
 
 //setSearchParams не поновлює searchParam а перезаписує поверх
 
